@@ -1,22 +1,15 @@
-// get the http and filesystem modules
-var http = require('http')
-fs = require('fs');
+// load the express package and create our app
+var express = require('express');
+var app     = express();
 
-// create our server using the http module
-http.createServer(function(req, res) {
+// set the port based on environment (more on environments later)
+var port    = 1337;
 
-    // write to our server. set configuration for the response
-    res.writeHead(200, {
-        'Content-Type': 'text/html',
-        'Access-Control-Allow-Origin' : '*'
-    });
+// send our index.html file to the user for the home page
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
 
-    var readStream = fs.createReadStream(__dirname + '/index.html');
-
-    // send a message
-    readStream.pipe(res);
-
-}).listen(1337);
-
-// tell ourselves what's happening
-console.log('Visit me at http://localhost:1337');
+// start the server
+app.listen(1337);
+console.log('1337 is the magic port!');
