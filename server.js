@@ -13,6 +13,19 @@ app.get('/', function(req, res) {
 // get an instance of the router
 var adminRouter = express.Router();
 
+app.route('/login')
+
+// show the form (GET http://localhost:1337/login)
+    .get(function(req, res) {
+         res.send('this is the login form');
+         })
+
+ // process the form (POST http://localhost:1337/login)
+ .post(function(req, res) {
+     console.log('processing');
+     res.send('processing the login form!');
+     });
+
 // route middleware that will happen on every request
 adminRouter.use(function(req, res, next) {
 
